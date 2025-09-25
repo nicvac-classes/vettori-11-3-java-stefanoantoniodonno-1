@@ -1,5 +1,3 @@
-
-
 import java.util.Scanner;
 
 class Main {
@@ -30,9 +28,33 @@ class Main {
       return x;
   }
 
-  private static int inserireElemento(int[] V, int N){
-      return N;
+  private static int inserireElemento(int[] V, int N, int e, int ie){
+
+      int i = 0;
+
+      int[] W = new int[N+1];
+
+      while(i < ie){
+          W[i] = V[i];
+          ++i;
+      }
+
+      W[ie] = e;
+
+      while(i < N){
+          W[i+1] = V[i];
+          ++i;
+      }
+
+      i = 0;
+      while(i < N+1){
+          V[i] = W[i];
+          ++i;
+      }
+
+      return N+1;
   }
+
 
   private static int eliminaElemento(int[] V, int N){
       return N;
@@ -73,14 +95,25 @@ class Main {
       int valore;
       int posizione;
 
+
       do{
 
          scelta = Menu();
           if(scelta == 1){
-           
+              System.out.print("Inserire valore da inserire nel vettore: ");
+              valore = Integer.parseInt(in.nextLine());
+              do{
+                  System.out.print("Inserire la posizione in cui inserire il valore: ");
+                  posizione = Integer.parseInt(in.nextLine());
+                  if(posizione < 0 || posizione >= N){
+                      System.out.println("Inserire una posizione valida!");
+                  }
+              }while(posizione < 0 || posizione >= N);
+
+              N = inserireElemento(V,N,valore,posizione);
           }
           if(scelta == 2){
-        	  
+            
           }
           if(scelta == 3){
 
@@ -93,11 +126,11 @@ class Main {
               if(posizione != -1){
                   System.out.println("Elemento trovato nella posizione: " + posizione);
               }else{
-                  System.out.println("Elemento non presente nel vettore!");
+                  System.out.println("Elemento non trovato");
               }
           }
           if(scelta == 4){
-             
+
           }
           if(scelta == 5){
               visualizzaVettore(V,N);
