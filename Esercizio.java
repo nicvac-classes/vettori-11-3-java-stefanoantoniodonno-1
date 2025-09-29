@@ -1,3 +1,5 @@
+package esercotazione;
+
 import java.util.Scanner;
 
 class Main {
@@ -29,35 +31,30 @@ class Main {
   }
 
   private static int inserireElemento(int[] V, int N, int e, int ie){
-
-      int i = 0;
-
-      int[] W = new int[N+1];
-
-      while(i < ie){
-          W[i] = V[i];
-          ++i;
-      }
-
-      W[ie] = e;
-
-      while(i < N){
-          W[i+1] = V[i];
-          ++i;
-      }
-
-      i = 0;
-      while(i < N+1){
-          V[i] = W[i];
-          ++i;
-      }
-
-      return N+1;
+	  int i, N2;
+	  N2= N+1;
+	  i= N2-1;
+	  while (i >= ie + 1 ) {
+		  V[i]= V[i-1];
+		  i= i-1;
+		  
+	  }
+	  V[ie]= e;
+      return N2;
   }
 
 
-  private static int eliminaElemento(int[] V, int N){
-      return N;
+  private static int eliminaElemento(int[] V, int N, int ie, int posizione){
+	  int i, N2;
+	  N2= N-1;
+	  i= ie;
+	  while(i <= N-2) {
+		  V[i]= V[i+1];
+		  i= i+1;
+		  
+		  
+	  }
+	  return N2;
   }
 
   private static int ricercaElemento(int[] V, int N, int e){
@@ -113,7 +110,18 @@ class Main {
               N = inserireElemento(V,N,valore,posizione);
           }
           if(scelta == 2){
-            
+        	  System.out.println("inserie valore da eliminare");
+        	  valore= Integer.parseInt(in.nextLine());
+        	  do {
+        		  System.out.println("inserire posizione in cui eliminare il valore");
+        		  posizione = Integer.parseInt(in.nextLine());
+        		  if (posizione <0 || posizione >= N) {
+        			  System.out.println("inserire posizione valida");
+        		  }
+        		  
+        	  }while (posizione <0 || posizione >= N);
+        	  
+        	  N = eliminaElemento (V, N ,valore, posizione);
           }
           if(scelta == 3){
 
