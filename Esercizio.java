@@ -71,6 +71,32 @@ class Main {
   }
 
   private static int eliminaDuplicati(int[] V, int N){
+      boolean duplicato;
+      int i, j, k;
+      k=0;
+      int W []= new int [N];
+      i=0;
+      while (i<= N-1) {
+        duplicato= false;
+        j=i+1;
+        while (j <= N-1 && duplicato == false) {
+            if (V[i] == V[j]) {
+                duplicato= true;
+
+            }
+            j=j+1;
+        }
+        if (duplicato == false) {
+            W[k] = V[i];
+            k=k+1;
+        }
+        i=i+1;
+      } 
+      i=0;
+      while (i < k) {
+        V[i] = W[i];
+        i=i+1;
+      }
       return N;
   }
 
@@ -94,6 +120,7 @@ class Main {
 
 
       do{
+
 
          scelta = Menu();
           if(scelta == 1){
